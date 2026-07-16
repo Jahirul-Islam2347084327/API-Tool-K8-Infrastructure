@@ -55,7 +55,7 @@ provider "helm" {
     module "iam" {
       source = "../../../modules/iam"
       cluster-oidc-issuer-url = module.eks.cluster_oidc_issuer_url
-      oidc-provider-arn = module.eks.aws_iam_openid_connect_provider
+      oidc-provider-arn = module.eks.oidc_provider_arn
     }
 
     module "ecr" {
