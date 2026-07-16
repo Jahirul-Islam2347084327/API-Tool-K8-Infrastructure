@@ -13,7 +13,7 @@ variable "az2" {
 variable "custom-url" {
   type = string
   description = "a domain that you own"
-  default = "jahirulmadethisin2026.com"
+  default = "jahirulmadethisinaws.online"
 }
 
 variable "region" {
