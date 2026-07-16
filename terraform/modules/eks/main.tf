@@ -4,6 +4,7 @@ module "eks" {
 
   name               = "production-eks"
   kubernetes_version = "1.33"
+  enable_irsa     = true
 
   addons = {
     coredns = {}
@@ -29,9 +30,9 @@ module "eks" {
 
       instance_types = ["t3.small"]
 
-      min_size     = 3
-      max_size     = 6
-      desired_size = 3
+      min_size     = 2
+      max_size     = 4
+      desired_size = 2
     }
   }
 
