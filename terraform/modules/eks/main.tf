@@ -16,16 +16,13 @@ module "eks" {
     }
   }
 
-
   endpoint_public_access = true
-
-
+ 
   enable_cluster_creator_admin_permissions = true
 
   vpc_id                   = var.vpc-id
   subnet_ids               = var.private-subnets
   control_plane_subnet_ids = var.private-subnets
-
 
   eks_managed_node_groups = {
     example = {
