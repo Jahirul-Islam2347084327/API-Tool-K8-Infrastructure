@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devops-api-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Jahirul-Islam2347084327/API-Tool-K8-Infrastructure
+    targetRevision: HEAD
+    path: kubernetes/manifest
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default 
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

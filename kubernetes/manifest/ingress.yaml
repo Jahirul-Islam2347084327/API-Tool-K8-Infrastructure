@@ -1,16 +1,25 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: minimal-ingress
+  name: devops-api  
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: jahirulmadethisinaws.online
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
-  ingressClassName: nginx-example
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - jahirulmadethisinaws.online
+    secretName: eks-tls-cert
   rules:
-  - http:
+  - host: jahirulmadethisinaws.online
+    http:
       paths:
-      - path: /testpath
+      - path: /
         pathType: Prefix
         backend:
           service:
-            name: test
+            name: devops-api
             port:
-              number: 80
+              number: 8000
+              
