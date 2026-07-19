@@ -19,3 +19,9 @@ spec:
         image: 754056705747.dkr.ecr.eu-west-2.amazonaws.com/url-app:d4f025cc21be8f60e1bd170a63cf61c8e18e2d59
         ports:
         - containerPort: 8000
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
