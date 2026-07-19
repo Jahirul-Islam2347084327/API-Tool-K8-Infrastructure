@@ -8,6 +8,12 @@ resource "helm_release" "nginx_ingress" {
   set =  [{
     name  = "controller.service.type"
     value = "LoadBalancer"
+},{
+    name = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-type"  
+    value = "external"
+},{
+    name = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-nlb-target-type"
+    value = "instance"
 }]
 }
 
