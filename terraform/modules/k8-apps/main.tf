@@ -5,16 +5,18 @@ resource "helm_release" "nginx_ingress" {
   namespace        = "ingress-nginx"
   create_namespace = true
 
-  set =  [{
+  set {
     name  = "controller.service.type"
     value = "LoadBalancer"
-},{
+} 
+set {
     name = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-type"  
     value = "external"
-},{
+} 
+set {
     name = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-nlb-target-type"
     value = "instance"
-}]
+}
 }
 
 resource "helm_release" "external_dns" {
@@ -24,17 +26,20 @@ resource "helm_release" "external_dns" {
   namespace        = "external-dns"
   create_namespace = true
 
-  set = [{
+  set {
     name  = "provider"
     value = "aws"
-  }, {
+  } 
+  set {
     name  = "domainFilters[0]"
     value = "jahirulmadethisinaws.online"
-  },
-  {
+  }
+
+  set {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = var.external-dns-iam
-  }]
+  }
+
   depends_on = [helm_release.nginx_ingress]
 }
 
@@ -45,13 +50,14 @@ resource "helm_release" "cert_manager" {
   namespace        = "cert-manager"
   create_namespace = true
 
-  set = [{
+  set {
     name  = "crds.enabled"
     value = "true"
-  }, {
+  } 
+  set {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = var.cert-manager-iam
-  }]
+  }
   depends_on = [helm_release.nginx_ingress]
 }
 

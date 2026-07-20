@@ -1,4 +1,4 @@
-resource "aws_iam_policy_document" "externaldns" {
+data "aws_iam_policy_document" "externaldns" {
   statement {
     effect    = "Allow"
     actions   = ["route53:ChangeResourceRecordSets"]
@@ -21,7 +21,7 @@ resource "aws_iam_policy_document" "externaldns" {
 resource "aws_iam_policy" "externaldns" {
   name        = "externaldns-policy"
   description = "Policy for externaldDNS to manage Route53"
-  policy      = aws_iam_policy_document.externaldns.json
+  policy      = data.aws_iam_policy_document.externaldns.json
 }
 
 
@@ -53,7 +53,7 @@ resource "aws_iam_role_policy_attachment" "externaldns" {
 }
 
 
-resource "aws_iam_policy_document" "certmanager-role" {
+data "aws_iam_policy_document" "certmanager-role" {
   statement {
     effect    = "Allow"
     actions   = ["route53:GetChange"]
@@ -83,7 +83,7 @@ resource "aws_iam_policy_document" "certmanager-role" {
 resource "aws_iam_policy" "certmanager" {
   name        = "certmanager-policy"
   description = "Policy for Cert manager to manage Route53"
-  policy      = aws_iam_policy_document.certmanager-role.json
+  policy      = data.aws_iam_policy_document.certmanager-role.json
 }
 
 data "aws_iam_openid_connect_provider" "eks" {
