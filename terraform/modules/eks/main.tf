@@ -21,6 +21,7 @@ module "eks" {
  
   enable_cluster_creator_admin_permissions = true
 
+
   vpc_id                   = var.vpc-id
   subnet_ids               = var.private-subnets
   control_plane_subnet_ids = var.private-subnets
@@ -30,9 +31,9 @@ module "eks" {
 
       instance_types = ["t3.small"]
 
-      min_size     = 2
-      max_size     = 4
-      desired_size = 2
+      min_size     = 3
+      max_size     = 6
+      desired_size = 3
     }
   }
 

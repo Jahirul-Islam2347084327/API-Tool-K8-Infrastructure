@@ -4,19 +4,22 @@ resource "helm_release" "nginx_ingress" {
   chart            = "ingress-nginx"
   namespace        = "ingress-nginx"
   create_namespace = true
+  timeout = 900
+  atomic = true
+
 
   set {
     name  = "controller.service.type"
     value = "LoadBalancer"
 } 
-set {
-    name = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-type"  
-    value = "external"
-} 
-set {
-    name = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-nlb-target-type"
-    value = "instance"
-}
+#set {
+ #   name = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-type"  
+  #  value = "external"
+#} 
+#set {
+#    name = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-nlb-target-type"
+#    value = "instance"
+#}
 }
 
 resource "helm_release" "external_dns" {
