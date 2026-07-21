@@ -15,7 +15,7 @@ This project is a production-grade deployment of a FastAPI devops tools  applica
 
 - **ExternalDNS**: Automatically updates DNS records in Route 53
 - **Cert-Manager**: Provides automated SSL/TLS certificate management via Let's Encrypt
-- **NGINX Ingress Controller**: Routes external traffic to services within the cluster and the service forwards to pods on port 8080
+- **NGINX Ingress Controller**: Routes external traffic to services within the cluster and the service forwards to pods on port 8000
 - **ArgoCD**: GitOps-based continuous deployment to update kubernetes manifests
 - **Prometheus/Grafana**: Collects cluster metrics and visualises them in dashboards
 - **IRSA (IAM Roles for Service Accounts)**: Uses temporary credentials via OIDC, eliminating the need for long-lived access keys
