@@ -78,8 +78,6 @@ This project is a production-grade deployment of a FastAPI devops tools  applica
 
 ## CI/CD Pipeline
 <img width="1882" height="1008" alt="image" src="https://github.com/user-attachments/assets/1d6c0ae5-a45d-460b-a19f-7889cc5090cc" />
-<img width="1909" height="1048" alt="image" src="https://github.com/user-attachments/assets/48195a0a-0a65-4bc0-9448-a26af6253684" />
-
 
 
 ### GitHub Actions Workflow for changes in /app folder
