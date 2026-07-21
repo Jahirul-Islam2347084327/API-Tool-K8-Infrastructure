@@ -25,26 +25,32 @@ This project is a production-grade deployment of a FastAPI devops tools  applica
 ```
 ├── .github
 │   └── workflows
-│       ├── code-change-pipeline.yml
-│       └── terraform-pipeline.yml
-├── app
-│   ├── Dockerfile
-│   ├── main.py
-│   └── requirements.txt
-├── k8s
-│   ├── clusterissuer.yml
-│   ├── deployment.yml
-│   ├── ingress.yml
-│   └── service.yml
-├── terraform
-│   ├── backend.tf
-│   ├── cert-manager-iam.tf
-│   ├── ecr.tf
-│   ├── eks.tf
-│   ├── externaldns-iam.tf
-│   ├── network.tf
-│   ├── outputs.tf
-│   └── provider.tf
+│       ├──  terraform-pipeline.yaml         
+├── kubernetes
+│   ├──manifest
+│   │   ├── clusterissuer.yaml
+│   │   ├── deployment.yaml
+│   │   ├── ingress.yaml
+│   │   └── service.yaml
+│   ├──values
+│      ├── development
+│      ├── staging
+│      └── production
+├── terraform/
+│   ├── modules/                
+│   │   ├── eks/                
+│   │   ├── ecr/         
+│   │   ├── iam/                
+│   │   ├── k8-apps/                
+│   │   └── networking/                      
+│   │                   
+│   │
+│   └── workflows/              # Targeted Deployment Environments
+│       ├── development/
+│       │   ├── backend-infra/  # Dev Infrastructure
+│       │   └── boilerplate/    # s3 and dynamo
+│       ├── staging/            # Staging isolation tier
+│       └── production/         # Production live tier
 ├── .gitignore
 └── README.md
 
@@ -81,7 +87,7 @@ This project is a production-grade deployment of a FastAPI devops tools  applica
 1. Triggered on push to `main` branch
 2. Builds Docker image with commit SHA as tag
 3. Pushes image to Amazon ECR
-4. Updates `k8s/deployment.yml` with new image tag
+4. Updates `k8s/deployment.yaml` with new image tag
 5. Commits changes back to repository
 6. ArgoCD detects changes and deploys automatically
 
@@ -152,53 +158,22 @@ ArgoCD continuously monitors the GitHub repository and automatically syncs the c
 - AWS CLI configured
 - kubectl installed
 - Terraform installed
-- Helm installed
+
 
 ### Deploy Infrastructure
 
 ```bash
-cd terraform/modules
+cd terraform/workflows/development/backend-infra
 terraform init
 terraform apply
 
 ```
 
-### Install Kubernetes Components
-
-```bash
-# NGINX Ingress
-helm upgrade --install ingress-nginx ingress-nginx \\
-  --repo <https://kubernetes.github.io/ingress-nginx> \\
-  --namespace ingress-nginx \\
-  --create-namespace
-
-# ExternalDNS
-helm install external-dns external-dns/external-dns \\
-  --namespace external-dns \\
-  --create-namespace \\
-  --set provider=aws
-
-# CertManager
-helm install cert-manager jetstack/cert-manager \\
-  --namespace cert-manager \\
-  --create-namespace \\
-  --set crds.enabled=true
-
-# ArgoCD
-kubectl create namespace argocd
-kubectl apply -n argocd -f <https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml>
-
-# Monitoring
-helm install prometheus prometheus-community/kube-prometheus-stack \\
-  --namespace monitoring \\
-  --create-namespace
-
-```
 
 ### Deploy Application
 
 ```bash
-kubectl apply -f k8s/
+kubectl apply -f kubernetes/
 
 ```
 
