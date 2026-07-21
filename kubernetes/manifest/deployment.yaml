@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: devops-api
-        image: 754056705747.dkr.ecr.eu-west-2.amazonaws.com/url-app:d4f025cc21be8f60e1bd170a63cf61c8e18e2d59
+        image: test/url-app:0f6aa94fe1442c589226f403adb0fc92aea15eed
         ports:
         - containerPort: 8000
         livenessProbe:
