@@ -29,7 +29,7 @@ module "eks" {
   eks_managed_node_groups = {
     example = {
 
-      instance_types = ["t3.medium"]
+      instance_types = ["m7i-flex.large"]
 
       min_size     = 3
       max_size     = 6
