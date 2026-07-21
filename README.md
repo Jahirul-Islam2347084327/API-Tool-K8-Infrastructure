@@ -56,7 +56,7 @@ This project is a production-grade deployment of a FastAPI devops tools  applica
 
 - **EKS Cluster**: Kubernetes with 3 worker nodes across 3 AZs
 - **VPC**: VPC with public and private subnets
-- **Route 53**: DNS management for eks.mahindevopslab.com
+- **Route 53**: DNS management for jahirulmadethisinaws.online
 - **ECR**: Private container registry
 - **IAM**: IRSA roles for ExternalDNS and CertManager
 - **STATE MANAGEMENT**: remote state stored in S3 and statelocking enabled via Dynamodb
@@ -204,8 +204,9 @@ kubectl apply -f k8s/
 
 ## Access the Application
 
-- **HTTP**: http://eks.mahindevopslab.com
-- **HTTPS**: https://eks.mahindevopslab.com
+- **HTTP**: http://jahirulmadethisinaws.online
+- **HTTPS**: https://jahirulmadethisinaws.online
+note: I usually destroy unless I am actively presenting my project to avoid unneccessary costs 
 
 ## What I Learnt
 
