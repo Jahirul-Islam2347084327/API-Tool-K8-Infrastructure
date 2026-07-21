@@ -3,7 +3,8 @@
 # Overview
 
 This project is a production-grade deployment of a FastAPI devops tools  application on AWS EKS. The deployment spans three availability zones for high availability and uses EKS Managed Node Groups for scalability. Infrastructure is automated using Terraform, and the application is containerised using Docker and stored in Amazon ECR.
-<img width="1920" height="1015" alt="Screenshot (443)" src="https://github.com/user-attachments/assets/27787e76-7ed3-4584-8a01-ce7bb1f98749" />
+<img width="1875" height="1045" alt="image" src="https://github.com/user-attachments/assets/d8842a4a-3e91-48aa-ac3f-ed1586865694" />
+
 
 # Architecture
 
@@ -70,7 +71,10 @@ This project is a production-grade deployment of a FastAPI devops tools  applica
 - **Prometheus/Grafana**: Monitoring and observability
 
 ## CI/CD Pipeline
-<img width="1920" height="1080" alt="Screenshot (448)" src="https://github.com/user-attachments/assets/fc275682-35f9-4c5b-a9dd-8b53b193e0a0" />
+<img width="1882" height="1008" alt="image" src="https://github.com/user-attachments/assets/1d6c0ae5-a45d-460b-a19f-7889cc5090cc" />
+<img width="1909" height="1048" alt="image" src="https://github.com/user-attachments/assets/48195a0a-0a65-4bc0-9448-a26af6253684" />
+
+
 
 ### GitHub Actions Workflow for changes in /app folder
 
@@ -106,12 +110,14 @@ This project is a production-grade deployment of a FastAPI devops tools  applica
 - **Private Subnets**: Worker nodes isolated in private subnets
 
 ## GitOps with ArgoCD
-<img width="1920" height="921" alt="Screenshot (446)" src="https://github.com/user-attachments/assets/9804d44d-623e-4d1e-9390-dbda5415cb2e" />
+<img width="1891" height="1033" alt="image" src="https://github.com/user-attachments/assets/7402e2b0-00c6-44b2-b58f-f3d1dba807f0" />
+
 
 ArgoCD continuously monitors the GitHub repository and automatically syncs the cluster state with the desired state defined in Git. Any changes to Kubernetes manifests trigger automatic deployments.
 
 ## Monitoring
-<img width="1920" height="946" alt="Screenshot (445)" src="https://github.com/user-attachments/assets/c2077e14-f9e5-4a0b-a961-98a99d1f36de" />
+<img width="1890" height="1035" alt="image" src="https://github.com/user-attachments/assets/b135c6cb-1fde-4bd2-94e2-0af8e5bf41a1" />
+
 
 ### Prometheus
 
